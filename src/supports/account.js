@@ -23,7 +23,7 @@ const findAccount = async (ctx, id) => {
     return undefined;
   }
 
-	// Token정보에 포함될 user 정보 return
+  // Token정보에 포함될 user 정보 return
   return {
     // accountId: id,
     // << Update Accesstoken's "sub" claim >>
@@ -41,17 +41,21 @@ const checkAccount = async (loginId, password) => {
   try {
     console.log("authenticate: ", loginId, password);
     const item = await database.getUser(loginId);
-	// Password 검증 부분. 각자 구현해야 할 부분.
-	// DB에서 가져온 password와 전달받은 값의 hash값을 비교하는 logic
-    if (item) {
-      const key = crypto
-        .pbkdf2Sync(password, item.loginPasswordSalt, 1026, 64, "sha512")
-        .toString("hex");
-      if (key === item.loginPassword) {
-        return item.id;
-      }
-    }
+    // Password 검증 부분. 각자 구현해야 할 부분.
+    // DB에서 가져온 password와 전달받은 값의 hash값을 비교하는 logic
+    // if (item) {
+    //   const key = crypto
+    //     .pbkdf2Sync(password, item.loginPasswordSalt, 1026, 64, "sha512")
+    //     .toString("hex");
+    //   if (key === item.loginPassword) {
+    //     return item.id;
+    //   }
+    // }
 
+    // passWord확인절차없이 바로 return
+    if (item) {
+      return item.id;
+    }
     return undefined;
   } catch (err) {
     console.log(err);

@@ -11,6 +11,7 @@
     "start": "run-s config:default start:execute"
   },
   "dependencies": {
+    "async": "^3.2.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
@@ -18,9 +19,10 @@
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "ioredis": "^4.27.6",
+    "jose": "^3.14.0",
     "lowdb": "1.0.0",
     "nodemon": "^2.0.12",
-    "oidc-provider": "^7.5.1",
+    "oidc-provider": "^6.29.5",
     "path": "^0.12.7"
   },
   "devDependencies": {

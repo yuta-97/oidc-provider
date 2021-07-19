@@ -1,20 +1,149 @@
-<% if (locals.google) { %>
-    <form autocomplete="off" action="/interaction/<%= uid %>/federated" method="post">
-      <input type="hidden" name="upstream" value="google">
-      <button type="submit" class="google-button">
-        <span class="google-button__icon">
-          <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg"><path d="M125.9 10.2c40.2-13.9 85.3-13.6 125.3 1.1 22.2 8.2 42.5 21 59.9 37.1-5.8 6.3-12.1 12.2-18.1 18.3l-34.2 34.2c-11.3-10.8-25.1-19-40.1-23.6-17.6-5.3-36.6-6.1-54.6-2.2-21 4.5-40.5 15.5-55.6 30.9-12.2 12.3-21.4 27.5-27 43.9-20.3-15.8-40.6-31.5-61-47.3 21.5-43 60.1-76.9 105.4-92.4z" id="Shape" fill="#EA4335"/><path d="M20.6 102.4c20.3 15.8 40.6 31.5 61 47.3-8 23.3-8 49.2 0 72.4-20.3 15.8-40.6 31.6-60.9 47.3C1.9 232.7-3.8 189.6 4.4 149.2c3.3-16.2 8.7-32 16.2-46.8z" id="Shape" fill="#FBBC05"/><path d="M361.7 151.1c5.8 32.7 4.5 66.8-4.7 98.8-8.5 29.3-24.6 56.5-47.1 77.2l-59.1-45.9c19.5-13.1 33.3-34.3 37.2-57.5H186.6c.1-24.2.1-48.4.1-72.6h175z" id="Shape" fill="#4285F4"/><path d="M81.4 222.2c7.8 22.9 22.8 43.2 42.6 57.1 12.4 8.7 26.6 14.9 41.4 17.9 14.6 3 29.7 2.6 44.4.1 14.6-2.6 28.7-7.9 41-16.2l59.1 45.9c-21.3 19.7-48 33.1-76.2 39.6-31.2 7.1-64.2 7.3-95.2-1-24.6-6.5-47.7-18.2-67.6-34.1-20.9-16.6-38.3-38-50.4-62 20.3-15.7 40.6-31.5 60.9-47.3z" fill="#34A853"/></svg>
-        </span>
-        <span class="google-button__text">Sign in with Google</span>
-      </button>
-    </form>
-    <div class="login-help">
-      - or -
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Sign-in</title>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Roboto:400,100);
+
+      body {
+        font-family: 'Roboto', sans-serif;
+        margin-top: 25px;
+        margin-bottom: 25px;
+      }
+
+      .login-card {
+        padding: 40px;
+        padding-top: 0px;
+        padding-bottom: 10px;
+        width: 274px;
+        background-color: #F7F7F7;
+        margin: 0 auto 10px;
+        border-radius: 2px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+
+      .login-card + .login-card {
+        padding-top: 10px;
+      }
+
+      .login-card h1 {
+        font-weight: 100;
+        text-align: center;
+        font-size: 2.3em;
+      }
+
+      .login-card h1 + p {
+        font-weight: 100;
+        text-align: center;
+      }
+
+      .login-card [type=submit] {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+        position: relative;
+      }
+
+      .login-card input[type=text], input[type=email], input[type=password] {
+        height: 44px;
+        font-size: 16px;
+        width: 100%;
+        margin-bottom: 10px;
+        -webkit-appearance: none;
+        background: #fff;
+        border: 1px solid #d9d9d9;
+        border-top: 1px solid #c0c0c0;
+        padding: 0 8px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+      }
+
+      .login {
+        text-align: center;
+        font-size: 14px;
+        font-family: 'Arial', sans-serif;
+        font-weight: 700;
+        height: 36px;
+        padding: 0 8px;
+      }
+
+      .login-submit {
+        border: 0px;
+        color: #fff;
+        text-shadow: 0 1px rgba(0,0,0,0.1);
+        background-color: #4d90fe;
+      }
+
+      .login-card a {
+        text-decoration: none;
+        color: #666;
+        font-weight: 400;
+        text-align: center;
+        display: inline-block;
+        opacity: 0.6;
+      }
+
+      .login-help {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+      }
+
+      .login-client-image img {
+        margin-bottom: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 20%;
+      }
+
+      .login-card input[type=checkbox] {
+        margin-bottom: 10px;
+      }
+
+      .login-card label {
+        color: #999;
+      }
+
+      ul {
+        font-weight: 100;
+        padding-left: 1em;
+        list-style-type: circle;
+      }
+
+      li + ul, ul + li, li + li {
+        padding-top: 0.3em;
+      }
+
+      button {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-card">
+      <h1><%= title %></h1>
+      <% if (flash) { %>
+        <p><%= flash %></p>
+      <% } %>
+      <form autocomplete="off" action="/interaction/<%= uid %>/login" method="post">
+        <input required type="text" name="loginId" placeholder="Enter an loginId" <% if (!params.login_hint) { %>autofocus="on"<% } else { %> value="<%= params.login_hint %>" <% } %>>
+        <input required type="password" name="password" placeholder="and password" >
+        <button type="submit" class="login login-submit">Sign-in</button>
+      </form>
+      <div class="login-help">
+        <a href="/interaction/<%= uid %>/abort">[ Cancel ]</a>
+        <% if (client.tosUri) { %>
+          <a href="<%= client.tosUri %>">[ Terms of Service ]</a>
+        <% } %>
+        <% if (client.policyUri) { %>
+          <a href="<%= client.policyUri %>">[ Privacy Policy ]</a>
+        <% } %>
+      </div>
     </div>
-    <% } %>
-    <form autocomplete="off" action="/interaction/<%= uid %>/login" method="post">
-      <input required type="text" name="login" placeholder="Enter any login" <% if (!params.login_hint) { %>autofocus="on"<% } else { %> value="<%= params.login_hint %>" <% } %>>
-      <input required type="password" name="password" placeholder="and password" <% if (params.login_hint) { %>autofocus="on"<% } %>>
-    
-      <button type="submit" class="login login-submit">Sign-in</button>
-    </form>
+  </body>
+</html>

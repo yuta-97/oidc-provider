@@ -1,12 +1,9 @@
 class DynamoDB {
-  constructor() {
-  }
+  constructor() {}
 
-  getUser(loginId) {
-  }
+  getUser(loginId) {}
 
-  getUserById(id) {
-  }
+  getUserById(id) {}
 }
 
 module.exports = DynamoDB;
