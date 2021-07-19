@@ -6,6 +6,8 @@ class MemoryDB {
     this.name = "memorydb";
 
     this.db = low(new Memory());
+
+    // DB에 저장 될 기본 계정
     this.db
       .defaults({
         users: [
@@ -21,10 +23,7 @@ class MemoryDB {
 
   getUser(loginId) {
     return new Promise((resolve, reject) => {
-      const item = this.db
-        .get("users")
-        .find({ loginId: loginId })
-        .value();
+      const item = this.db.get("users").find({ loginId: loginId }).value();
 
       resolve(item);
     });
