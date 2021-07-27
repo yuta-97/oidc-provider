@@ -305,7 +305,7 @@ const oidc = new Provider(process.env.AUTH_URL, configs);
 console.log(process.env.AUTH_URL);
 app.use(oidc.callback);
 
-app.listen(8888, () => {
+app.listen(process.env.AUTH_PORT || 8888, () => {
   initAccount(process.env.DATABASE);
 
   console.log(`server is listening to ${process.env.AUTH_PORT || 8888} port`);
